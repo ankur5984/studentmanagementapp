@@ -50,6 +50,7 @@ export class WelcomeComponent implements OnInit {
 
   }
 
+  
   ngAfterViewInit() {
 
   }

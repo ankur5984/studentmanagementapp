@@ -18,9 +18,14 @@ import { RegisterStudentComponent } from './register-student/register-student.co
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
 import { ThankyouComponent } from './thankyou/thankyou.component';
 import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter-basic-auth.service';
+import { MatIconModule } from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+
 
 
 
@@ -48,7 +53,11 @@ import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatCardModule,
+    MatChipsModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS, useClass:HttpIntercepterBasicAuthService,multi:true

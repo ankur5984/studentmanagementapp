@@ -1,4 +1,41 @@
-<H1>welcome!</H1>
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>Personal Details</mat-expansion-panel-header>
+        <mat-panel-description>Student Personal Information</mat-panel-description>
+        <mat-card>
+            <mat-chip-list>
+                <mat-label class="text-black">Name: </mat-label>
+                <mat-chip color="warn" selected>{{student?.name}}</mat-chip>
+                <mat-label class="text-black">UserName: </mat-label>
+                <mat-chip color="warn" selected>{{student?.userName}}</mat-chip>
+                <mat-label class="text-black">Role: </mat-label>
+                <mat-chip color="warn" selected>{{student?.role}}</mat-chip>
+            </mat-chip-list>
+        </mat-card>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>Contact Details</mat-expansion-panel-header>
+        <mat-panel-description>Student Mailing Address</mat-panel-description>
+        <mat-card>
+            <mat-chip-list>
+                <mat-label class="text-black">Contact Number: </mat-label>
+                <mat-chip color="accent" selected>{{student?.phone}}</mat-chip>
+                <mat-label class="text-black">Email Address: </mat-label>
+                <mat-chip color="accent" selected>{{student?.email}}</mat-chip>
+                <mat-label class="text-black">Resident: </mat-label>
+                <mat-chip color="accent" selected>{{student?.address}}</mat-chip>
+            </mat-chip-list>
+        </mat-card>
+    </mat-expansion-panel>
+</mat-accordion>
+ 
+<div class="container">
+    <pre><h4>welcome! {{student?.userName}}You can check list of other student using link <a routerLink="/students">Students</a></h4></pre>
+</div>
+  
+
+<!-- <H1>welcome!</H1>
 
 <div class="container">
     welcome {{username}}. You can manage your <a routerLink="/students">Students</a>
@@ -10,4 +47,4 @@
         {{student?.phone}}
 
     </span>
-</div>
+</div> -->
