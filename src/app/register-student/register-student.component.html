@@ -1,0 +1,65 @@
+<H1>welcome to Student Registration Page 
+</H1>
+<div class="container tb-10">
+    <form (ngSubmit)="submit()" [formGroup]="multiStep">
+        <div *ngIf="step==1" formGroupName="studentDetails">
+            <h4>Student Details</h4>
+            <div class="form-group">
+                <label for="studentAdd">Name</label>
+                <input type="text" class="form-control" formControlName="name" id="studentAdd"
+                    aria-describedby="emailHelp" placeholder="Name">
+            </div>
+            <span class="text-danger" *ngIf="submitted && studentDetails['name'].errors?.['required']">Please Enter your Name</span>
+            <div>
+                <label for="studentAdd">UserName</label>
+                <input type="text" class="form-control" formControlName="username" name="username">
+            </div>
+            <div>
+                <label for="studentAdd">Role</label>
+                <select name="Roles" class="form-control" formControlName="role" id="role">
+                    <option value="null">Select</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="STUDENT">STUDENT</option>
+                    <option value="SUPERVISOR">SUPERVISOR</option>
+                </select>
+            </div>
+        </div>
+
+        <div  *ngIf="step==2" formGroupName="contactDetails">
+            <h4>Contact Details</h4>
+            <div>
+                <label for="studentAdd">Mobile</label>
+                <input type="text" class="form-control" formControlName="phone" name="phone">
+            </div>
+            <div>
+                <label for="studentAdd">Email</label>
+                <input type="text" class="form-control" formControlName="email" name="email">
+            </div>
+            <span class="text-danger" *ngIf="submitted && contactDetails['email'].errors?.['required']">Please Enter Email</span>
+            <div>
+                <label for="studentAdd">Address</label>
+                <input type="text" class="form-control" formControlName="address" name="Address">
+            </div>
+        </div>
+
+        <div *ngIf="step==3" formGroupName="passwordDetails">
+            <h4>Password Verification</h4>
+            <div>
+                <label for="studentAdd">Password</label>
+                <input type="password" class="form-control" formControlName="password" name="password">
+            </div>
+            <div>
+                <label for="studentAdd">Confirm Password</label>
+                <input type="password" class="form-control" formControlName="confirmPassword" name="confirmPassword">
+            </div>
+            <span *ngIf="isPasswordMatch() == false">Please enter correct Password</span>
+        </div>
+        <br>
+        <a class="btn btn-primary mx-2" *ngIf="step!=1" (click)="previous()">Previous</a>
+        <button type="submit" class="btn btn-primary mx-2" *ngIf="step!=3">Next</button>
+        <button type="submit" class="btn btn-primary mx-2" *ngIf="step ==3">Submit</button>
+        <br>
+        <pre>{{multiStep.value|json}}</pre>
+        
+    </form>
+</div>

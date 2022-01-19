@@ -1,0 +1,33 @@
+<H1>Login Page</H1>
+
+<div class="container">
+    <div class="alert alert-danger" *ngIf="invalidLogin">{{errorMessage}}</div>
+    <form>
+        <div>
+            <div>
+                <label>UserName </label>
+                <input type="text" name="username" [(ngModel)]="username">
+            </div>
+           
+            <!-- [()] = model element is needed to assign here it is username --we call it banana in the box -- 2-way binding-->
+            <div>
+                <label>Password </label>
+                <input type="password" name="password" [(ngModel)]="password">
+            </div>
+           <div>
+            <label>Role </label>
+            <select name="Roles" id="role">
+                <option value="ADMIN">ADMIN</option>
+                <option value="STUDENT">STUDENT</option>
+                <option value="SUPERVISOR">SUPERVISOR</option>
+            </select>
+           </div>
+            
+
+            <!-- <button class="btn btn-success" (click)=handleLogin()>Login</button> -->
+            <button class="btn btn-success" (click)=handleAuthorizedUserLogin()>Login</button>
+            <button class="btn btn-success" (click)="register()">Sign Up</button>
+        </div>
+    </form>
+
+</div>
