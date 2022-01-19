@@ -13,75 +13,60 @@ import { TokenBasedAuthenticationService } from '../service/token-based-authenti
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username:string = "admin";
-  password:string = "";
+  username: string;
+  password: string
   errorMessage = 'Invalid Credentials';
   invalidLogin = false;
-  student : Student;// = new StudentObject("","","","","","","","",Role.ADMIN);
-  //need? : Router
-  //Angular.getRouter
-  //how? dependency injection
+  student: Student;
+
   constructor(private router: Router,
     private authentication: HardcodedAuthenticationService,
     private serviceAuthentication: TokenBasedAuthenticationService) {
-    //when we pass as constructor argument it will act as member variable by default
   }
 
   ngOnInit(): void {
   }
 
-  handleLogin() {
-    //if(this.username === "admin" && this.password === "admin123" )
-    if (this.authentication.authenticate(this.username, this.password)) {
-      this.invalidLogin = false;
-      console.log("login sucessfully")
-      //redirect to welcome page. so need a router instance.to navigate to other routes page. how?
-      // using dependency injection.go to constructor now.
-      this.router.navigate(['welcome', this.username]);//it will navigate to specific page.
-    }
-    else {
-      this.invalidLogin = true;
-    }
-    // console.log(this.username + this.password);
-  }
+  // handleLogin() {
+  //   //if(this.username === "admin" && this.password === "admin123" )
+  //   if (this.authentication.authenticate(this.username, this.password)) {
+  //     this.invalidLogin = false;
+  //     console.log("login sucessfully")
+  //     //redirect to welcome page. so need a router instance.to navigate to other routes page. how?
+  //     // using dependency injection.go to constructor now.
+  //     this.router.navigate(['welcome', this.username]);//it will navigate to specific page.
+  //   }
+  //   else {
+  //     this.invalidLogin = true;
+  //   }
+  //   // console.log(this.username + this.password);
+  // }
 
   handleAuthorizedUserLogin() {
     //if(this.username === "admin" && this.password === "admin123" )
     this.serviceAuthentication.getAuthenticatedUserLogin(this.username, this.password)
       .subscribe(
-        (data:Student) => {
-          if(data){
+        (data: Student) => {
+          if (data) {
             this.student = data;
-          this.serviceAuthentication.emitdata(data);
-          localStorage.setItem("student",JSON.stringify(data));
-          this.invalidLogin = false;
-          //redirect to welcome page. so need a router instance.to navigate to other routes page. how?
-          // using dependency injection.go to constructor now.
-          this.router.navigate(['welcome', this.username]);//it will navigate to specific page.
+            this.serviceAuthentication.emitdata(data);
+            localStorage.setItem("student", JSON.stringify(data));
+            this.invalidLogin = false;
+            //redirect to welcome page. so need a router instance.to navigate to other routes page. how?
+            // using dependency injection.go to constructor now.
+            this.router.navigate(['welcome', this.username]);//it will navigate to specific page.
           }
-          
+
         },
-        error=>{
+        error => {
           this.invalidLogin = true;
           console.log(error);
         }
       )
-    // if(this.authentication.authenticate(this.username,this.password)){
-    //     this.invalidLogin = false;
-    //     console.log("login sucessfully")
-    //     //redirect to welcome page. so need a router instance.to navigate to other routes page. how?
-    //     // using dependency injection.go to constructor now.
-    //     this.router.navigate(['welcome',this.username]);//it will navigate to specific page.
-    // } 
-    // else{
-    //     this.invalidLogin = true;
-    // }
-    // console.log(this.username + this.password);
+
   }
 
-  public getUser(){
-    return this.student;
-  }
+ 
 
   register() {
     this.router.navigate(['register']);

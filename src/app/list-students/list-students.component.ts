@@ -37,6 +37,8 @@ export class ListStudentsComponent implements OnInit {
   status : boolean = false;
   listOfStudents: Student[] = [];
   message: string = '';
+  student: Student= new Student();
+  jsonStudent:any;
   //way to create student object
   // student = {
   //   id : 1,
@@ -53,10 +55,15 @@ export class ListStudentsComponent implements OnInit {
 
 
   constructor(private students:StudentDataService,private router:Router) {
+    let anyway : any= localStorage.getItem("student");
+    console.log(anyway);
+  //  this.student = JSON.parse(localStorage.getItem('student'))
+     this.jsonStudent = JSON.parse(anyway) as Student;
    }
 
   ngOnInit(): void {
    this.refreshList();
+   this.student = this.jsonStudent;
   }
 
   refreshList(){
@@ -105,4 +112,14 @@ export class ListStudentsComponent implements OnInit {
     (id !=null)?this.editStudentDetails(id):this.addStudent(id);
   }
   
+  isAdminOrSuperVisior(){
+
+    if(this.student.role === "ADMIN")
+    { 
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 }

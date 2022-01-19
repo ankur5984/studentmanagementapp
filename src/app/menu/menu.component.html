@@ -1,11 +1,11 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
-        <div><a routerLink="/welcome/admin" class="navbar-brand">STUDENT MANAGEMENT SYSTEM</a></div>
+        <div><a  [routerLink]="['/welcome',student?.userName]" class="navbar-brand">STUDENT MANAGEMENT SYSTEM</a></div>
 
         <ul class="navbar-nav">
-            <li><a *ngIf="authentication.isUserLoggedIn()" routerLink="/welcome/admin" class="nav-link">Home</a></li>
-            <li><a *ngIf="authentication.isUserLoggedIn()" routerLink="/students" class="nav-link">Students</a></li>
+            <li><a *ngIf="authentication.isUserLoggedIn()" [routerLink]="['/welcome',student?.userName]" class="nav-link">Home</a></li>
+            <li><a *ngIf="authentication.isUserLoggedIn() && isAdminOrSuperVisior()===true" routerLink="/students" class="nav-link">Students</a></li>
         </ul>
 
         <ul class="navbar-nav navbar-collapse justify-content-end">

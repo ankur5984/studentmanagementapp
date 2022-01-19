@@ -10,5 +10,5 @@ export class Student {
      imageUrl: String;
      email: String;
      address: String;
-     role: Role;
+     role: String;
 }
